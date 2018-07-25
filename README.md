@@ -1,3 +1,3 @@
+![alt text](https://raw.githubusercontent.com/andrewoodleyjr/cudi/master/designs/icon.png)
 # Cudi
 Video cutter for stories (instagram, snapchat, whatsapp, facebook)
-![alt text](https://raw.githubusercontent.com/andrewoodleyjr/cudi/master/design/to/img.png)
