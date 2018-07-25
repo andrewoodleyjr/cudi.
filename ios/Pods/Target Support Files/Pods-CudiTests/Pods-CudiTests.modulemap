@@ -1,0 +1,6 @@
+framework module Pods_CudiTests {
+  umbrella header "Pods-CudiTests-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -1,0 +1,6 @@
+framework module Pods_CudiUITests {
+  umbrella header "Pods-CudiUITests-umbrella.h"
+
+  export *
+  module * { export * }
+}
