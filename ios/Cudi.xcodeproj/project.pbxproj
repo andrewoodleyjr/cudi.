@@ -16,6 +16,8 @@
 		766E194A2100099300D9D76C /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 766E19482100099300D9D76C /* LaunchScreen.storyboard */; };
 		766E19552100099300D9D76C /* cutTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E19542100099300D9D76C /* cutTests.swift */; };
 		766E19602100099300D9D76C /* cutUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 766E195F2100099300D9D76C /* cutUITests.swift */; };
+		7670815E210E69920029FE29 /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670815D210E69910029FE29 /* PhotoViewController.swift */; };
+		76708160210E6A3E0029FE29 /* VideoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7670815F210E6A3E0029FE29 /* VideoViewController.swift */; };
 		7676EDA82103831500EAA120 /* IAPHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7676EDA72103831500EAA120 /* IAPHandler.swift */; };
 		7676EDB12103845900EAA120 /* buy.png in Resources */ = {isa = PBXBuildFile; fileRef = 7676EDAA2103845900EAA120 /* buy.png */; };
 		7676EDB22103845900EAA120 /* question.png in Resources */ = {isa = PBXBuildFile; fileRef = 7676EDAB2103845900EAA120 /* question.png */; };
@@ -32,6 +34,9 @@
 		76A259E12102B35000C09DC5 /* SF-UI-Display-Regular.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76A259E02102B35000C09DC5 /* SF-UI-Display-Regular.otf */; };
 		76A259E32102B38A00C09DC5 /* SF-UI-Display-Light.otf in Resources */ = {isa = PBXBuildFile; fileRef = 76A259E22102B38A00C09DC5 /* SF-UI-Display-Light.otf */; };
 		76A259E52102D31C00C09DC5 /* VideoProcessor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 76A259E42102D31C00C09DC5 /* VideoProcessor.swift */; };
+		76CB352D210C632600BAE8B3 /* clock.png in Resources */ = {isa = PBXBuildFile; fileRef = 76CB352C210C632600BAE8B3 /* clock.png */; };
+		76CB352F210C637B00BAE8B3 /* question_2.png in Resources */ = {isa = PBXBuildFile; fileRef = 76CB352E210C637A00BAE8B3 /* question_2.png */; };
+		76CB3531210C63B700BAE8B3 /* question-3.png in Resources */ = {isa = PBXBuildFile; fileRef = 76CB3530210C63B700BAE8B3 /* question-3.png */; };
 		BD33BB2723BD72AECF04D249 /* Pods_CudiUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7C27CC952BFA47D824EFB38 /* Pods_CudiUITests.framework */; };
 /* End PBXBuildFile section */
 
@@ -68,6 +73,8 @@
 		766E195B2100099300D9D76C /* CudiUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = CudiUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		766E195F2100099300D9D76C /* cutUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = cutUITests.swift; sourceTree = "<group>"; };
 		766E19612100099300D9D76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7670815D210E69910029FE29 /* PhotoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
+		7670815F210E6A3E0029FE29 /* VideoViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = VideoViewController.swift; path = "../../../../Downloads/SwiftyCam-master 2/DemoSwiftyCam/DemoSwiftyCam/VideoViewController.swift"; sourceTree = "<group>"; };
 		7676EDA72103831500EAA120 /* IAPHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHandler.swift; sourceTree = "<group>"; };
 		7676EDAA2103845900EAA120 /* buy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = buy.png; sourceTree = "<group>"; };
 		7676EDAB2103845900EAA120 /* question.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question.png; sourceTree = "<group>"; };
@@ -84,6 +91,9 @@
 		76A259E02102B35000C09DC5 /* SF-UI-Display-Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Regular.otf"; sourceTree = "<group>"; };
 		76A259E22102B38A00C09DC5 /* SF-UI-Display-Light.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "SF-UI-Display-Light.otf"; sourceTree = "<group>"; };
 		76A259E42102D31C00C09DC5 /* VideoProcessor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoProcessor.swift; sourceTree = "<group>"; };
+		76CB352C210C632600BAE8B3 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
+		76CB352E210C637A00BAE8B3 /* question_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_2.png; sourceTree = "<group>"; };
+		76CB3530210C63B700BAE8B3 /* question-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-3.png"; sourceTree = "<group>"; };
 		76F1602821003DCA00416072 /* Mundo Sans Std Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mundo Sans Std Regular.otf"; sourceTree = "<group>"; };
 		7E504E7AED796BA64FC24739 /* Pods-CudiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CudiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CudiUITests/Pods-CudiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB50D9CCE242A8664B89DF94 /* Pods-Cudi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cudi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cudi/Pods-Cudi.release.xcconfig"; sourceTree = "<group>"; };
@@ -167,6 +177,8 @@
 				766E19412100099000D9D76C /* ViewController.swift */,
 				7676EDA72103831500EAA120 /* IAPHandler.swift */,
 				76A259E42102D31C00C09DC5 /* VideoProcessor.swift */,
+				7670815F210E6A3E0029FE29 /* VideoViewController.swift */,
+				7670815D210E69910029FE29 /* PhotoViewController.swift */,
 				76A259D42102AE7600C09DC5 /* GradientView.swift */,
 				76A259D62102AF1400C09DC5 /* RoundedButton.swift */,
 				76A259CE210081A000C09DC5 /* StoreReviewHelper.swift */,
@@ -201,7 +213,10 @@
 			children = (
 				7676EDAD2103845900EAA120 /* arrow.png */,
 				7676EDAA2103845900EAA120 /* buy.png */,
+				76CB3530210C63B700BAE8B3 /* question-3.png */,
+				76CB352E210C637A00BAE8B3 /* question_2.png */,
 				7676EDAB2103845900EAA120 /* question.png */,
+				76CB352C210C632600BAE8B3 /* clock.png */,
 				7676EDB02103845900EAA120 /* splash.png */,
 				7676EDAF2103845900EAA120 /* time.png */,
 				7676EDAC2103845900EAA120 /* watermark-gray@2x.png */,
@@ -355,11 +370,14 @@
 				7676EDB52103845900EAA120 /* watermark@2x.png in Resources */,
 				7676EDB72103845900EAA120 /* splash.png in Resources */,
 				7676EDB12103845900EAA120 /* buy.png in Resources */,
+				76CB3531210C63B700BAE8B3 /* question-3.png in Resources */,
+				76CB352D210C632600BAE8B3 /* clock.png in Resources */,
 				766E194A2100099300D9D76C /* LaunchScreen.storyboard in Resources */,
 				7676EDB42103845900EAA120 /* arrow.png in Resources */,
 				7676EDB62103845900EAA120 /* time.png in Resources */,
 				76A259D32102ADF200C09DC5 /* abeatbyKaiRegular.otf in Resources */,
 				7676EDB22103845900EAA120 /* question.png in Resources */,
+				76CB352F210C637B00BAE8B3 /* question_2.png in Resources */,
 				76A259E12102B35000C09DC5 /* SF-UI-Display-Regular.otf in Resources */,
 				766E19472100099300D9D76C /* Assets.xcassets in Resources */,
 				766E19452100099000D9D76C /* Main.storyboard in Resources */,
@@ -527,9 +545,11 @@
 			files = (
 				766E19422100099000D9D76C /* ViewController.swift in Sources */,
 				7676EDA82103831500EAA120 /* IAPHandler.swift in Sources */,
+				76708160210E6A3E0029FE29 /* VideoViewController.swift in Sources */,
 				76A259D72102AF1400C09DC5 /* RoundedButton.swift in Sources */,
 				76A259E52102D31C00C09DC5 /* VideoProcessor.swift in Sources */,
 				766E19402100098F00D9D76C /* AppDelegate.swift in Sources */,
+				7670815E210E69920029FE29 /* PhotoViewController.swift in Sources */,
 				76A259D52102AE7600C09DC5 /* GradientView.swift in Sources */,
 				76A259CF210081A000C09DC5 /* StoreReviewHelper.swift in Sources */,
 			);
@@ -643,6 +663,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
 		};
@@ -696,6 +717,7 @@
 				SDKROOT = iphoneos;
 				SWIFT_COMPILATION_MODE = wholemodule;
 				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 3.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -707,6 +729,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PHX6MWK7TU;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/cudi/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -727,6 +750,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = PHX6MWK7TU;
+				GCC_GENERATE_TEST_COVERAGE_FILES = NO;
 				INFOPLIST_FILE = "$(SRCROOT)/cudi/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 10;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -756,7 +780,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.intheroom.cutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cudi.app/Cudi";
 			};
@@ -778,7 +802,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.intheroom.cutTests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Cudi.app/Cudi";
 			};
@@ -799,7 +823,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.intheroom.cutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = cut;
 			};
@@ -820,7 +844,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = co.intheroom.cutUITests;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				TEST_TARGET_NAME = cut;
 			};

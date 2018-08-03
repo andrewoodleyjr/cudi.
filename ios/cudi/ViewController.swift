@@ -12,25 +12,38 @@ import AssetsLibrary
 import AVFoundation
 import Photos
 import StoreKit
+import SwiftyCam
 
-class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavigationControllerDelegate  {
+class ViewController:
+    SwiftyCamViewController,
+    SwiftyCamViewControllerDelegate,
+    UIImagePickerControllerDelegate,
+    UINavigationControllerDelegate
+{
+    
     @IBOutlet weak var uploadBtn: UIButton!
     @IBOutlet weak var messageTxt: UITextView!
     @IBOutlet weak var timeLbl: UILabel!
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var purchaseBtn: UIButton!
+    @IBOutlet weak var captureButton: SwiftyCamButton!
+    @IBOutlet weak var flipCameraButton: UIButton!
+    @IBOutlet weak var flashButton: UIButton!
+    
+//    let captureButton = SwiftyCamButton(frame: buttonFrame)
+//    captureButton.delegate = self
     
     @IBAction func consumable(_ sender: Any) {
         let optionMenu = UIAlertController(title: nil, message: "select option", preferredStyle: .actionSheet)
         
         let restore = UIAlertAction(title: "restore in-app purchase", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-               IAPHandler.shared.restorePurchase()
+            IAPHandler.shared.restorePurchase()
         })
         
         let purchase = UIAlertAction(title: "remove watermark ($0.99)", style: .default, handler: {
             (alert: UIAlertAction!) -> Void in
-               IAPHandler.shared.purchaseMyProduct(index: 0)
+            IAPHandler.shared.purchaseMyProduct(index: 0)
         })
         
         let cancel = UIAlertAction(title: "cancel", style: .cancel, handler: {
@@ -76,6 +89,34 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         showImagePicker()
     }
     
+    @IBAction func cameraSwitchTapped(_ sender: Any) {
+        switchCamera()
+    }
+    
+    @IBAction func toggleFlashTapped(_ sender: Any) {
+        flashEnabled = !flashEnabled
+        
+        if flashEnabled == true {
+            flashButton.setImage(#imageLiteral(resourceName: "flash"), for: UIControlState())
+        } else {
+            flashButton.setImage(#imageLiteral(resourceName: "flashOutline"), for: UIControlState())
+        }
+    }
+    
+    override func didReceiveMemoryWarning() {
+        super.didReceiveMemoryWarning()
+        // Dispose of any resources that can be recreated.
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        StoreReviewHelper.incrementAppOpenedCount()
+//                captureButton.delegate = self
+    }
+    
+    override var prefersStatusBarHidden: Bool {
+        return true
+    }
+    
     func showImagePicker() {
         messageTxt.text = "hold up...processing\ndon't close this"
         uploadBtn.setTitle("loading",for: .normal)
@@ -93,7 +134,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         switch photoAuthorizationStatus {
         case .authorized:
             print("Access is granted by user")
-//            showImagePicker()
+        //            showImagePicker()
         case .notDetermined:
             PHPhotoLibrary.requestAuthorization({
                 (newStatus) in
@@ -101,7 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 if newStatus ==  PHAuthorizationStatus.authorized {
                     /* do stuff here */
                     print("success")
-//                    showImagePicker()
+                    //                    showImagePicker()
                 }
             })
             print("It is not determined until now")
@@ -206,6 +247,11 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         checkPermission()
         NotificationCenter.default.addObserver(self, selector: #selector(self.statusUpdate(_:)), name: NSNotification.Name(rawValue: "VideoStatusUpdate"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.successfulPurchase(_:)), name: NSNotification.Name(rawValue: "SuccessfulPurchase"), object: nil)
+        cameraDelegate = self
+        maximumVideoDuration = 10.0
+        shouldUseDeviceOrientation = true
+        allowAutoRotate = true
+        audioEnabled = true
     }
     
     func checkWatermarkStatus(){
@@ -234,16 +280,65 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 strongSelf.present(alertView, animated: true, completion: nil)
             }
         }
-        IAPHandler.shared.restorePurchase()
     }
     
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didTake photo: UIImage) {
+        let newVC = PhotoViewController(image: photo)
+        self.present(newVC, animated: true, completion: nil)
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        StoreReviewHelper.incrementAppOpenedCount()
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didBeginRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+        print("Did Begin Recording")
+//        captureButton.growButton()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.flashButton.alpha = 0.0
+            self.flipCameraButton.alpha = 0.0
+        })
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
+        print("Did finish Recording")
+//        captureButton.shrinkButton()
+        UIView.animate(withDuration: 0.25, animations: {
+            self.flashButton.alpha = 1.0
+            self.flipCameraButton.alpha = 1.0
+        })
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
+        let newVC = VideoViewController(videoURL: url)
+        self.present(newVC, animated: true, completion: nil)
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFocusAtPoint point: CGPoint) {
+        let focusView = UIImageView(image: #imageLiteral(resourceName: "focus"))
+        focusView.center = point
+        focusView.alpha = 0.0
+        view.addSubview(focusView)
+        
+        UIView.animate(withDuration: 0.25, delay: 0.0, options: .curveEaseInOut, animations: {
+            focusView.alpha = 1.0
+            focusView.transform = CGAffineTransform(scaleX: 1.25, y: 1.25)
+        }, completion: { (success) in
+            UIView.animate(withDuration: 0.15, delay: 0.5, options: .curveEaseInOut, animations: {
+                focusView.alpha = 0.0
+                focusView.transform = CGAffineTransform(translationX: 0.6, y: 0.6)
+            }, completion: { (success) in
+                focusView.removeFromSuperview()
+            })
+        })
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didChangeZoomLevel zoom: CGFloat) {
+        print(zoom)
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didSwitchCameras camera: SwiftyCamViewController.CameraSelection) {
+        print(camera)
+    }
+    
+    func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFailToRecordVideo error: Error) {
+        print(error)
     }
 }
 

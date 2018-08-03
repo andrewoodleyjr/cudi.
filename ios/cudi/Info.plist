@@ -23,7 +23,9 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>select and save videos</string>
+	<string>record videos</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>record audio with videos</string>
 	<key>NSPhotoLibraryAddUsageDescription</key>
 	<string>select and save videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>

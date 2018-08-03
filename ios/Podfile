@@ -18,5 +18,6 @@ target 'Cudi' do
   end
 
   pod "MediaWatermark"
-
+  pod "SwiftyCam"
+  
 end
