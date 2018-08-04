@@ -94,6 +94,7 @@
 		76CB352C210C632600BAE8B3 /* clock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = clock.png; sourceTree = "<group>"; };
 		76CB352E210C637A00BAE8B3 /* question_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = question_2.png; sourceTree = "<group>"; };
 		76CB3530210C63B700BAE8B3 /* question-3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question-3.png"; sourceTree = "<group>"; };
+		76E96B2821157402001C742C /* SwiftyCam.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = SwiftyCam.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		76F1602821003DCA00416072 /* Mundo Sans Std Regular.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Mundo Sans Std Regular.otf"; sourceTree = "<group>"; };
 		7E504E7AED796BA64FC24739 /* Pods-CudiUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-CudiUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-CudiUITests/Pods-CudiUITests.release.xcconfig"; sourceTree = "<group>"; };
 		AB50D9CCE242A8664B89DF94 /* Pods-Cudi.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Cudi.release.xcconfig"; path = "Pods/Target Support Files/Pods-Cudi/Pods-Cudi.release.xcconfig"; sourceTree = "<group>"; };
@@ -173,15 +174,15 @@
 		766E193E2100098F00D9D76C /* cudi */ = {
 			isa = PBXGroup;
 			children = (
-				766E193F2100098F00D9D76C /* AppDelegate.swift */,
-				766E19412100099000D9D76C /* ViewController.swift */,
 				7676EDA72103831500EAA120 /* IAPHandler.swift */,
 				76A259E42102D31C00C09DC5 /* VideoProcessor.swift */,
-				7670815F210E6A3E0029FE29 /* VideoViewController.swift */,
-				7670815D210E69910029FE29 /* PhotoViewController.swift */,
 				76A259D42102AE7600C09DC5 /* GradientView.swift */,
 				76A259D62102AF1400C09DC5 /* RoundedButton.swift */,
 				76A259CE210081A000C09DC5 /* StoreReviewHelper.swift */,
+				766E193F2100098F00D9D76C /* AppDelegate.swift */,
+				766E19412100099000D9D76C /* ViewController.swift */,
+				7670815F210E6A3E0029FE29 /* VideoViewController.swift */,
+				7670815D210E69910029FE29 /* PhotoViewController.swift */,
 				766E19432100099000D9D76C /* Main.storyboard */,
 				766E19462100099300D9D76C /* Assets.xcassets */,
 				766E19482100099300D9D76C /* LaunchScreen.storyboard */,
@@ -239,6 +240,7 @@
 		880F421BAE28F4C5F5199BD9 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				76E96B2821157402001C742C /* SwiftyCam.framework */,
 				7676EDB82103D6A900EAA120 /* StoreKit.framework */,
 				38FE551ACFEE543450F8CBF1 /* Pods_Cudi.framework */,
 				31D154F01E8F9C477EEBC64E /* Pods_CudiTests.framework */,
@@ -738,7 +740,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewoodleyjr.cutta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
@@ -759,7 +761,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.andrewoodleyjr.cutta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;

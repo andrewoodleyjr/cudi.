@@ -66,17 +66,17 @@ class VideoProcessor: NSObject {
             
             guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
             exportSession.outputURL = outputURL
-            exportSession.outputFileType = .mp4
-            
+            exportSession.outputFileType = AVFileTypeMPEG4
+
             let timeRange = CMTimeRange(start: CMTime(seconds: startTime, preferredTimescale: 1000),
                                         end: CMTime(seconds: endTime, preferredTimescale: 1000))
-            
+
             let metaItem = AVMutableMetadataItem()   // Creation Date
-            metaItem.keySpace = AVMetadataKeySpace.common;
-            metaItem.key = AVMetadataKey.commonKeyCreationDate as (NSCopying & NSObjectProtocol)?;
+            metaItem.keySpace = AVMetadataKeySpaceCommon // AVMetadataKeySpace.common;
+            metaItem.key = AVMetadataCommonKeyCreationDate as (NSCopying & NSObjectProtocol)?;
             metaItem.value = NSDate() as (NSCopying & NSObjectProtocol)?
             exportSession.metadata = [metaItem]
-            
+
             exportSession.timeRange = timeRange
             exportSession.exportAsynchronously {
                 PHPhotoLibrary.shared().performChanges({

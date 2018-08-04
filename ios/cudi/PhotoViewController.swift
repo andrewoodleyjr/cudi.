@@ -39,8 +39,9 @@ class PhotoViewController: UIViewController {
 		backgroundImageView.contentMode = UIViewContentMode.scaleAspectFit
 		backgroundImageView.image = backgroundImage
 		view.addSubview(backgroundImageView)
-		let cancelButton = UIButton(frame: CGRect(x: 10.0, y: 10.0, width: 30.0, height: 30.0))
-		cancelButton.setImage(#imageLiteral(resourceName: "cancel"), for: UIControlState())
+        let x = self.view.frame.size.width - 48.0
+        let cancelButton = UIButton(frame: CGRect(x: x, y: 75.0, width: 16.0, height: 16.0))
+        cancelButton.setImage(#imageLiteral(resourceName: "close"), for: UIControlState())
 		cancelButton.addTarget(self, action: #selector(cancel), for: .touchUpInside)
 		view.addSubview(cancelButton)
 	}
