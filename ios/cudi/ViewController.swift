@@ -71,8 +71,11 @@ class ViewController:
         uploadBtn.layer.cornerRadius = 3.0
         uploadBtn.layer.borderColor = #colorLiteral(red: 1.0, green: 1.0, blue: 1.0, alpha: 1.0)
         uploadBtn.layer.borderWidth = 2.0
+        let longGesture = UILongPressGestureRecognizer(target: self, action: #selector(ViewController.longPressStartRecording)) //Long function will call when user long press on button.
+        startRecordBtn.addGestureRecognizer(longGesture)
         NotificationCenter.default.addObserver(self, selector: #selector(self.statusUpdate(_:)), name: NSNotification.Name(rawValue: "VideoStatusUpdate"), object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(self.successfulPurchase(_:)), name: NSNotification.Name(rawValue: "SuccessfulPurchase"), object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.saveVideo(_:)), name: NSNotification.Name(rawValue: "SaveVideo"), object: nil)
 
     }
     
@@ -83,7 +86,6 @@ class ViewController:
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         StoreReviewHelper.incrementAppOpenedCount()
-//        captureButton.delegate = self
     }
     
     @objc func statusUpdate(_ notification: NSNotification) {
@@ -98,6 +100,21 @@ class ViewController:
     @objc func successfulPurchase(_ notification: NSNotification) {
         UserDefaults.standard.set(true, forKey: "REMOVED_WATERMARK")
         checkWatermarkStatus()
+    }
+    
+    @objc func saveVideo(_ notification: NSNotification) {
+        let url = notification.userInfo?["url"] as? URL
+        videoProcessor.processVideo(sourceURL: url!, duration: Float(time), withWaterMark: true, saveFirst: true)
+    }
+    
+    @objc func longPressStartRecording(_ sender: UILongPressGestureRecognizer) {
+        if sender.state == .began {
+         startVideoRecording()
+        }
+        
+        if sender.state == .ended {// same for other states .failed .cancelled {
+            stopVideoRecording()
+        }
     }
     
     func checkPermission() {
@@ -187,7 +204,7 @@ class ViewController:
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         imagePickerController.dismiss(animated: true, completion: nil)
-        videoProcessor.processVideo(sourceURL: (info[UIImagePickerControllerMediaURL] as! URL), duration: Float(time), withWaterMark: true)
+        videoProcessor.processVideo(sourceURL: (info[UIImagePickerControllerMediaURL] as! URL), duration: Float(time), withWaterMark: true, saveFirst: false)
     }
     
     func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
@@ -286,7 +303,6 @@ class ViewController:
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishRecordingVideo camera: SwiftyCamViewController.CameraSelection) {
         print("Did finish Recording")
-//        captureButton.shrinkButton()
         UIView.animate(withDuration: 0.25, animations: {
             self.flashButton.alpha = 1.0
             self.flipCameraButton.alpha = 1.0
@@ -303,7 +319,7 @@ class ViewController:
     }
     
     func swiftyCam(_ swiftyCam: SwiftyCamViewController, didFinishProcessVideoAt url: URL) {
-        let newVC = VideoViewController(videoURL: url)
+        let newVC = VideoViewController(videoURL: url, duration: Float(time), withWaterMark: true)
         self.present(newVC, animated: true, completion: nil)
     }
     
@@ -402,7 +418,7 @@ class ViewController:
         if flashEnabled == true {
             flashButton.alpha = 1.0
         } else {
-            flashBtn.alpha = 0.5
+            flashButton.alpha = 0.5
         }
     }
     

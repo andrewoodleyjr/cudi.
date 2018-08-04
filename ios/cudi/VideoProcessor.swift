@@ -9,19 +9,19 @@ import AVFoundation
 
 
 class VideoProcessor: NSObject {
-    func processVideo(sourceURL: URL, duration: Float, withWaterMark: Bool) {
+    func processVideo(sourceURL: URL, duration: Float, withWaterMark: Bool, saveFirst: Bool) {
         if(withWaterMark){
-         return self.processVideo(url: sourceURL, duration: duration)
+            return self.processVideo(url: sourceURL, duration: duration, saveFirst: saveFirst)
         }
         self.trimVideo(sourceURL: sourceURL, duration: duration)
     }
     
-    private func processVideo(url: URL, duration: Float) {
+    private func processVideo(url: URL, duration: Float, saveFirst: Bool) {
         if let item = MediaItem(url: url) {
-            let logoImage = UIImage(named: "watermark@2x.png")
+            let logoImage = UIImage(named: "watermark-explain@2x.png")
             
             let firstElement = MediaElement(image: logoImage!)
-            firstElement.frame = CGRect(x: 20, y: 100, width: 100, height: (800 * 100 / 650))
+            firstElement.frame = CGRect(x: 50, y: 100, width: 200, height: (862 * 200 / 570))
             
             item.add(elements: [firstElement])
             
@@ -29,8 +29,48 @@ class VideoProcessor: NSObject {
             mediaProcessor.processElements(item: item) { [weak self] (result, error) in
                 DispatchQueue.main.async {
                     print("done with watermark")
+                    
+                    let asset = AVAsset(url: result.processedUrl!)
+                    let length = Float(asset.duration.value) / Float(asset.duration.timescale)
+                    let count = Int(ceil(length / duration))
+                    
+                    if(saveFirst && count > 1){
+                        self?.saveVideo(sourceURL: result.processedUrl!)
+                    }
+                    
                     self?.trimVideo(sourceURL: result.processedUrl!, duration: duration)
                 }
+            }
+        }
+    }
+    
+    private func saveVideo(sourceURL: URL){
+        let fileManager = FileManager.default
+        let documentDirectory = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
+        let asset = AVAsset(url: sourceURL)
+        let timestamp = NSDate().timeIntervalSince1970
+        var outputURL = documentDirectory.appendingPathComponent("output")
+        do {
+            try fileManager.createDirectory(at: outputURL, withIntermediateDirectories: true, attributes: nil)
+            outputURL = outputURL.appendingPathComponent("\(sourceURL.lastPathComponent)-\(timestamp).mp4")
+        }catch let error {
+            print(error)
+        }
+        
+        
+        guard let exportSession = AVAssetExportSession(asset: asset, presetName: AVAssetExportPresetHighestQuality) else { return }
+        exportSession.outputURL = outputURL
+        exportSession.outputFileType = AVFileTypeMPEG4
+        
+        let metaItem = AVMutableMetadataItem()   // Creation Date
+        metaItem.keySpace = AVMetadataKeySpaceCommon // AVMetadataKeySpace.common;
+        metaItem.key = AVMetadataCommonKeyCreationDate as (NSCopying & NSObjectProtocol)?;
+        metaItem.value = NSDate() as (NSCopying & NSObjectProtocol)?
+        exportSession.metadata = [metaItem]
+        exportSession.exportAsynchronously {
+            PHPhotoLibrary.shared().performChanges({
+                PHAssetChangeRequest.creationRequestForAssetFromVideo(atFileURL: outputURL)
+            }) { saved, error in
             }
         }
     }
